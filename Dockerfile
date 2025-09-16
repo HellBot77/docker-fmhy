@@ -11,7 +11,7 @@ FROM --platform=$BUILDPLATFORM node:alpine AS build
 WORKDIR /edit
 COPY --from=base /git/edit .
 RUN npm install --global pnpm && \
-    pnpm install && \
+    pnpm install --frozen-lockfile && \
     pnpm docs:build
 
 FROM joseluisq/static-web-server
